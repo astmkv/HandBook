@@ -1,11 +1,94 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
+<style>
+    body {
+        background-image: url('https://images.alphacoders.com/105/1056771.jpg');
+        background-repeat: no-repeat;
+        background-size: cover;
+        height: auto;
+        width: auto;
+        padding: 0;
+        /*background-color: rgba(28, 25, 23, 0.5);*/
+        background-blend-mode: multiply;
+    }
+
+    #back{
+        background: rgba(2, 2, 2, 0.2);
+        /*height: auto;*/
+        width: auto;
+        /*padding: 0;*/
+        padding: 20vh 0;
+        /*height: 100vh;*/
+        /*overflow: hidden;*/
+    }
+
+    .but:hover {
+        z-index: 1;
+        transform: scale(1.0);
+        font-weight: bold;
+        font-size: 120%;
+        /*border: 1px solid white;*/
+        box-shadow: 0 0 10px;
+        color: white;
+        /*overflow: hidden;*/
+    }
+
+    .but {
+        background-color: rgba(28, 25, 23, 0.8);
+        color: white;
+        height: 80%;
+        width: 50%;
+        font-weight: bold;
+        font-size: 110%;
+        border-collapse: collapse;
+        /*border-radius: 2%;*/
+        list-style: none;
+        padding: 0;
+        /*background-color: transparent;*/
+        line-height: 3.5;
+        transition: all 0.3s;
+        border: 1px solid white;
+        margin: 1% 0;
+        overflow: hidden;
+        box-shadow: 0 0 5px;
+    }
+    #buttons{
+        display: block;
+        /*vertical-align: middle;*/
+        /*overflow: hidden;*/
+    }
+
+</style>
 <head>
     <meta charset="UTF-8">
-    <title>Home Page</title>
+    <title>Title</title>
     <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}"/>
 </head>
 <body>
-<div th:insert="/layout/layouts.html :: navs"></div>
+<div id="back">
+    <div class="container-fluid text-center">
+<!--        <header th:insert="/layout/layouts.html :: navs"></header>-->
+        <div id="buttons">
+        <!--        <form>-->
+
+
+            <a th:href="@{'https://google.com'}"><button class="but">Log in as a GUEST</button></a>
+
+        <br>
+        <!--            кнопка обновления-->
+
+        <a th:href="@{/devices}"><button class="but">Log in as a USER</button></a>
+
+            <br>
+        <!--кнопка удаления-->
+<!--            <form>-->
+        <a th:href="@{/manus}"><button class="but">Log in as a ADMIN</button></a>
+<!--                </form>-->
+        </div>
+    </div>
+    <div>
+<!--        <footer th:insert="layout/layouts.html :: footer"></footer>-->
+    </div>
+</div>
 </body>
 </html>

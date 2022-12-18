@@ -1,10 +1,171 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<style>
+    .but {
+        /*height: 35px;*/
+        /*margin: 2px;*/
+        height: 8vh;
+        width: 25vw;
+        text-align: center;
+        /*margin: 2px;*/
+        /*padding: 4px;*/
+        background-color: rgba(28, 25, 23, 0.8);
+        color: white;
+        border-collapse: collapse;
+        transition: all 0.3s;
+        border: 1px solid white;
+        margin: 1% 1%;
+        /*font-size: 0.5em;*/
+        /*overflow: hidden;*/
+        box-shadow: 0 0 5px;
+        padding: 1% 0.5%;
+        /*padding: 4px;*/
+        display: inline-block;
+        overflow: hidden;
+        font-size: 1.5vw;
+
+    }
+
+    a.but, button {
+        /*-webkit-appearance: button;*/
+        /*-moz-appearance: button;*/
+        /*appearance: button;*/
+        text-decoration: none;
+        color: white;
+    }
+
+    body {
+        background-image: url('https://images.alphacoders.com/105/1056771.jpg');
+        background-repeat: no-repeat;
+        background-size: cover;
+        height: auto;
+        width: auto;
+        padding: 0;
+        /*background-color: rgba(28, 25, 23, 0.5);*/
+        background-blend-mode: multiply;
+        text-decoration-color: white;
+
+    }
+
+    #back {
+        background: rgba(2, 2, 2, 0.5);
+        height: auto;
+        width: auto;
+    }
+
+    header {
+        width: 100vw;
+    }
+
+    .title {
+        background: rgba(2, 2, 2, 0.9);
+        color: white;
+    }
+
+    .info {
+        color: white;
+        text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+    }
+
+    .but:hover {
+        color: red;
+        border: 1px solid red;
+    }
+    a.but,button {
+        -webkit-appearance: button;
+        -moz-appearance: button;
+        /*appearance: button;*/
+        text-decoration: none;
+        color: white;
+    }
+    .fb_table {
+        text-align: center;
+        color: white;
+    }
+
+</style>
 <head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}"/>
 </head>
 <body>
-$END$
+<div class="container-fluid text-center">
+    <nav th:insert="/layout/layouts.html :: navs"></nav>
+    <div id="back">
+        <div class="title"><h4>Detailed information about the device</h4></div>
+        <div class="info"> [[${device.deviceName}]] manufactured by [[${device.manu.manuName}]]</div>
+
+        <div class="info"> Designed for measuring a [[${device.type}]] signal in the range up to
+            [[${device.rangeMeasuring}]]
+            [[${device.value}]]
+        </div>
+        <div class="info">Best accuracy: [[${device.accuracy}]] %</div>
+
+        <div class="info"> Price: [[${device.price}]]</div>
+
+        <!--<table class="table">-->
+        <!--    <thead>-->
+        <!--    <tr>-->
+        <!--        <td class="table-dark">ID</td>-->
+        <!--        <td>[[${device.id}]]</td>-->
+        <!--    </tr>-->
+        <!--    <tr>-->
+        <!--        <td class="table-dark"> Description</td>-->
+        <!--        <td></td>-->
+        <!--    </tr>-->
+        <!--    <tr>-->
+        <!--        <td class="table-dark">Tech. param's</td>-->
+        <!--        <td> </td>-->
+        <!--    </tr>-->
+        <!--    <tr>-->
+        <!--        <td class="table-dark">Price</td>-->
+        <!--        <td></td>-->
+        <!--    </tr>-->
+        <!--    </thead>-->
+        <!--    <tbody>-->
+        <!--    &lt;!&ndash;/*@thymesVar id="studentsList" type=""*/&ndash;&gt;-->
+        <!--&lt;!&ndash;    <th:block th:each="device: ${devicesList}">&ndash;&gt;-->
+        <!--&lt;!&ndash;        <tr>&ndash;&gt;-->
+        <!--&lt;!&ndash;            <td>[[${device.id}]]</td>&ndash;&gt;-->
+        <!--&lt;!&ndash;            <td>[[${device.deviceName}]]</td>&ndash;&gt;-->
+        <!--&lt;!&ndash;            <td>[[${device.type}]]</td>&ndash;&gt;-->
+        <!--&lt;!&ndash;        </tr>&ndash;&gt;-->
+        <!--&lt;!&ndash;    </th:block>&ndash;&gt;-->
+        <!--    </tbody>-->
+        <!--</table>-->
+
+        <!--<a th:href="@{${student.id} + '/assessments/new'}" class="btn btn-success">Add new assessment</a>-->
+        <!--<a th:href="@{'/assessments/newAssessment/' + ${student.id}}" class="btn btn-success">Add new assessment</a>-->
+        <!--<a th:href="@{student/assessments/new}" class="btn btn-success">Add new assessment</a>-->
+
+        <a th:href="@{/devices}" class="but">Back</a>
+
+        <table class="fb_table">
+            <thead class="fb_thead">
+            <tr>
+                <td> FeedBacks</td>
+            </tr>
+            </thead>
+            <tbody class="fb_tbody">
+
+            <th:block th:each="feedBack: ${feedBackList}">
+                <tr th:if="${feedBackList.size() == 0}">
+<!--                <tr>-->
+                    <td>"No one has left a feedback yet..."</td>
+                    </tr>
+                <tr th:if="${feedBackList.size() != 0}">
+<!--                    <tr>-->
+                    <td>[[${feedBack.rating}]]</td>
+                    <td>[[${feedBack.text}]]</td>
+                </tr>
+            </th:block>
+            </tbody>
+        </table>
+    </div>
+</div>
+<div>
+    <footer th:insert="layout/layouts.html :: footer"></footer>
+</div>
 </body>
 </html>

@@ -1,11 +1,32 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
+<style>
+    body {
+        background-image: url('https://images.alphacoders.com/105/1056771.jpg');
+        background-repeat: no-repeat;
+        background-size: cover;
+        height: auto;
+        width: auto;
+        padding: 0;
+        /*background-color: rgba(28, 25, 23, 0.5);*/
+        background-blend-mode: multiply;
+    }
+
+    #back{
+        background: rgba(2, 2, 2, 0.2);
+        /*height: auto;*/
+        width: auto;
+        /*padding: 0;*/
+        padding: 20vh 0;
+        height: 100vh;
+    }
+</style>
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
     <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}"/>
 </head>
 <body>
-<h1>manage page</h1>
+<div id="back"></div>
 </body>
 </html>

@@ -7,8 +7,8 @@ import java.util.Set;
 @Table(name="manu_t")
 public class Manufacturer {
 
-//    @OneToMany(mappedBy = "manu", cascade = CascadeType.PERSIST)
-//    private Set<Device> devices;
+    @OneToMany(mappedBy = "manu", cascade = CascadeType.PERSIST)
+    private Set<Device> devices;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

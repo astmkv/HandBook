@@ -1,10 +1,192 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<style>
+
+    body {
+        background-image: url('https://images.alphacoders.com/105/1056771.jpg');
+        background-repeat: no-repeat;
+        background-size: cover;
+        height: auto;
+        width: auto;
+        padding: 0;
+        /*background-color: rgba(28, 25, 23, 0.5);*/
+        background-blend-mode: multiply;
+    }
+
+    #back {
+        background: rgba(2, 2, 2, 0.5);
+        height: 100%;
+        width: auto;
+        /*position: absolute;*/
+    }
+
+    header {
+        width: 100vw;
+    }
+
+    .but {
+        /*height: 35px;*/
+        /*margin: 2px;*/
+        height: 8vh;
+        width: 25vw;
+        text-align: center;
+        /*margin: 2px;*/
+        /*padding: 4px;*/
+        background-color: rgba(28, 25, 23, 0.8);
+        color: white;
+        border-collapse: collapse;
+        transition: all 0.3s;
+        border: 1px solid white;
+        margin: 1% 1%;
+        /*font-size: 0.5em;*/
+        /*overflow: hidden;*/
+        box-shadow: 0 0 5px;
+        padding: 1% 0.5%;
+        /*padding: 4px;*/
+        display: inline-block;
+        overflow: hidden;
+        font-size: 1.5vw;
+    }
+
+    .but:hover {
+        z-index: 1;
+        transform: scale(1.0);
+        /*font-weight: bold;*/
+        /*font-size: 0.5em;*/
+        /*border: 1px solid white;*/
+        box-shadow: 0 0 10px;
+
+        /*overflow: hidden;*/
+    }
+
+    #new:hover {
+        color: darkgreen;
+        border: 1px solid darkgreen;
+    }
+
+    #previous:hover {
+        color: red;
+        border: 1px solid red;
+    }
+
+    a.but, button {
+        /*-webkit-appearance: button;*/
+        -moz-appearance: button;
+        /*appearance: button;*/
+        text-decoration: none;
+        color: white;
+    }
+
+    td {
+        color: white;
+        text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+    }
+
+    tr {
+        background-color: rgba(17, 14, 14, 0.5);
+    }
+
+    tbody > tr:hover {
+        background-color: rgba(1, 92, 146, 0.5);
+        /*border-color: dodgerblue;*/
+    }
+
+    table, tr, td {
+        border: none;
+        border-collapse: collapse;
+    }
+
+    tbody {
+        border-style: none;
+    }
+
+    thead {
+        background: rgba(2, 2, 2, 0.9);
+    }
+
+    #update {
+        color: white;
+    }
+
+    #details:hover {
+        background-color: rgba(0, 165, 236, 0.3);
+    }
+
+    #update:hover {
+        background-color: rgba(253, 253, 254, 0.3);
+    }
+
+    #delete:hover {
+        background-color: rgba(248, 47, 96, 0.3);
+    }
+
+</style>
 <head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
+    <meta charset="UTF-8">
+    <title>All Manufacturers</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}"/>
 </head>
 <body>
-$END$
+<div class="container-fluid text-center">
+    <header th:insert="/layout/layouts.html :: navs"></header>
+    <!-- сообщение -->
+    <!-- если выражение в скобках {} верное, то елемент рендерится -->
+    <!--    <div th:if="${message != null}" class="alert alert-success">-->
+    <!--        [[${message}]]-->
+    <!--    </div>-->
+    <div id="back">
+        <table class="table mb-4">
+            <!--шапка таблицы-->
+            <thead class="table-head">
+            <tr>
+                <td>ID
+                <td>Logo</td>
+                <td>Name</td>
+                <td>Country</td>
+                <td>Comment</td>
+                <td>Аctions</td>
+            </tr>
+            </thead>
+            <tbody>
+            <!--        <nav th:insert="/layout/layouts.html :: navs"></nav>-->
+            <!--цикл-->
+            <th:block th:each="manu: ${listManus}">
+                <tr>
+                    <td>[[${manu.id}]]</td>
+                    <td>[[${manu.logo}]]</td>
+                    <td>[[${manu.manuName}]]</td>
+                    <td>[[${manu.country}]]</td>
+                    <td>[[${manu.comment}]]</td>
+                    <td>
+                        <!--кнопка деталей-->
+                        <a th:href="@{'/manus/details/' + ${manu.id}}" class="btn" id="details">&#128269</a>
+
+                        <!--кнопка обновления-->
+                        <a th:href="@{'/manus/update/' + ${manu.id}}" class="btn" id="update">↺</a>
+
+                        <!--кнопка удаления-->
+                        <a th:href="@{'/manus/delete/' + ${manu.id}}" class="btn" id="delete">&#10060</a>
+                    </td>
+                </tr>
+            </th:block>
+            </tbody>
+        </table>
+
+        <!-- ссылка на добавление нового студента -->
+        <a th:href="@{/manus/newManu}" class="but" id="new"> Add new Manufacturer </a>
+
+        <a th:href="@{/devices}" class="but" id="previous">
+            Back
+        </a>
+        <!--        <form th:action="@{/logout}" method="post">-->
+        <!--            <button class="btn btn-danger">Sign out</button>-->
+        <!--        </form>-->
+        <br>
+        <br><br>
+    </div>
+</div>
+<div>
+    <footer th:insert="layout/layouts.html :: footer"></footer>
+</div>
 </body>
 </html>

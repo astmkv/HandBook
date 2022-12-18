@@ -5,7 +5,7 @@ import javax.persistence.*;
 
 @Entity
 @Table(name="device_t")
-public class Device1 {
+public class Device {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -15,13 +15,39 @@ public class Device1 {
     private String deviceName;                              // наименование
 
     @Column(nullable = false, length = 50)
-    private String value;                               // измеряемая величина
+    private String value;                                   // измеряемая величина
 
     @Column(nullable = false, length = 50)
-    private String type;                              // вид(род) измеряемой величины
+    private String type;                                    // вид(род) измеряемой величины
 
-    @Column(nullable = false, name = "range")
-    private Integer range;                              // диапазон
+    public Integer getRangeMeasuring() {
+        return rangeMeasuring;
+    }
+
+    public void setRangeMeasuring(Integer rangeMeasuring) {
+        this.rangeMeasuring = rangeMeasuring;
+    }
+
+    public Double getAccuracy() {
+        return accuracy;
+    }
+
+    public void setAccuracy(Double accuracy) {
+        this.accuracy = accuracy;
+    }
+
+    @Column(nullable = false)
+    private Integer rangeMeasuring;                         // диапазон измерений
+
+    @Column(nullable = true)
+    private Double accuracy;                                // точность
+
+    @Column(nullable = true)
+    private Integer price;                                  // цена
+
+    @ManyToOne
+    @JoinColumn(name="manu_id")
+    private Manufacturer manu;                              // производитель
 
     public Integer getId() {
         return id;
@@ -55,50 +81,25 @@ public class Device1 {
         this.type = type;
     }
 
-    public Integer getRange() {
-        return range;
+    public Manufacturer getManu() {
+        return manu;
     }
 
-    public void setRange(Integer range) {
-        this.range = range;
+    public void setManu(Manufacturer manu) {
+        this.manu = manu;
+    }
+
+    public Integer getPrice() {
+        return price;
+    }
+
+    public void setPrice(Integer price) {
+        this.price = price;
     }
 
 
 
-    public Device1() {
-    }
 
-//    @Column(nullable = false)
-//    private String range;
-
-//    @Column()
-//    private float accuracy;                            // точность
-//
-//    @Column()
-//    private Integer price;                              // цена
-//
-
-//    public Manufacturer getManu() {
-//        return manu;
-//    }
-//
-//    public void setManu(Manufacturer manu) {
-//        this.manu = manu;
-//    }
-//
-//    public Integer getPrice() {
-//        return price;
-//    }
-//
-//    public void setPrice(Integer price) {
-//        this.price = price;
-//    }
-
-
-
-//    @ManyToOne
-//    @JoinColumn(name="manu_id")
-//    private Manufacturer manu;                          // производитель
 
 
 
